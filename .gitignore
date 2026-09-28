@@ -7,6 +7,10 @@ build/
 # env
 .env
 .env*.local
+.supabase/
+# supabase CLI
+supabase/.branches/
+supabase/.temp/
 # OS / editor
 .DS_Store
 Thumbs.db

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Vivid Prompt — Design Preview</title>
+<style>
+  :root {
+    --primary: #6C4CF1;
+    --primary-dark: #5538D1;
+    --accent: #22C3A6;
+    --bg: #FAF9FF;
+    --surface: #FFFFFF;
+    --text: #1A1633;
+    --muted: #6B6588;
+    --border: #E6E1F5;
+    --warning-bg: #FFF7E6;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+  }
+  header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 24px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .logo { font-weight: 800; font-size: 20px; color: var(--primary); }
+  main { max-width: 900px; margin: 0 auto; padding: 32px 20px 64px; }
+  h1 { font-size: 40px; margin: 8px 0; letter-spacing: -0.5px; }
+  h2 { font-size: 24px; margin-top: 40px; }
+  p.lead { color: var(--muted); font-size: 18px; }
+  .swatches { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-top: 16px; }
+  .swatch { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: var(--surface); }
+  .swatch .color { height: 64px; }
+  .swatch .label { padding: 8px 10px; font-size: 13px; }
+  .type-scale { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+  .btn {
+    display: inline-block; border: none; cursor: pointer;
+    padding: 12px 22px; border-radius: 10px; font-size: 16px; font-weight: 700;
+    transition: background 0.15s, transform 0.05s;
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn:focus-visible { outline: 3px solid #B9A8FF; outline-offset: 2px; }
+  .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .btn-primary { background: var(--primary); color: #fff; }
+  .btn-primary:hover { background: var(--primary-dark); }
+  .btn-secondary { background: #EFEAFF; color: var(--primary-dark); }
+  .btn-secondary:hover { background: #E0D6FF; }
+  .btn-ghost { background: transparent; color: var(--primary-dark); border: 2px solid var(--border); }
+  .btn-ghost:hover { border-color: var(--primary); }
+  .btn-danger { background: #E5484D; color: #fff; }
+  .btn-danger:hover { background: #C93A3E; }
+  .btn-sm { padding: 8px 14px; font-size: 14px; border-radius: 8px; }
+  .btn-lg { padding: 16px 30px; font-size: 18px; border-radius: 12px; }
+  .btn-block { display: block; width: 100%; }
+  .btn-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  /* Dark mode preview block */
+  .dark-demo {
+    --bg: #14111F; --surface: #1E1930; --text: #F2EFFC;
+    --muted: #B3ABCD; --border: #352D55;
+    background: var(--bg); color: var(--text);
+    border: 1px solid var(--border); border-radius: 14px; padding: 20px; margin-top: 16px;
+  }
+  .dark-demo .btn-secondary { background: #2E2650; color: #DCD4FF; }
+  .dark-demo .btn-ghost { color: #DCD4FF; }
+  .dark-demo input, .dark-demo textarea {
+    width: 100%; padding: 12px; font-size: 16px; color: var(--text);
+    border: 2px solid var(--border); border-radius: 10px; background: var(--surface);
+  }
+  .dark-demo .result { background: #262044; border-left-color: var(--accent); }
+  .field { margin: 12px 0; }
+  .field label { display: block; font-weight: 700; margin-bottom: 6px; }
+  .field input, .field textarea {
+    width: 100%; padding: 12px; font-size: 16px;
+    border: 2px solid var(--border); border-radius: 10px; background: var(--surface);
+  }
+  .field input:focus, .field textarea:focus { outline: none; border-color: var(--primary); }
+  .card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; padding: 20px; margin-top: 16px;
+  }
+  .result { background: #F4F1FF; border-left: 4px solid var(--primary); padding: 14px; border-radius: 0 10px 10px 0; white-space: pre-wrap; }
+</style>
+</head>
+<body>
+  <header><span class="logo">Vivid Prompt</span><span>Design Preview</span></header>
+  <main>
+    <h1>From vague idea to vivid prompt</h1>
+    <p class="lead">Friendly coach + practice environment. Colors, type, buttons and inputs below are the MVP visual baseline.</p>
+
+    <h2>1. Colors</h2>
+    <div class="swatches">
+      <div class="swatch"><div class="color" style="background:#6C4CF1"></div><div class="label"><strong>Primary</strong><br/>#6C4CF1</div></div>
+      <div class="swatch"><div class="color" style="background:#5538D1"></div><div class="label"><strong>Primary Dark</strong><br/>#5538D1</div></div>
+      <div class="swatch"><div class="color" style="background:#22C3A6"></div><div class="label"><strong>Accent</strong><br/>#22C3A6</div></div>
+      <div class="swatch"><div class="color" style="background:#FAF9FF"></div><div class="label"><strong>Background</strong><br/>#FAF9FF</div></div>
+      <div class="swatch"><div class="color" style="background:#1A1633"></div><div class="label"><strong>Text</strong><br/>#1A1633</div></div>
+      <div class="swatch"><div class="color" style="background:#6B6588"></div><div class="label"><strong>Muted</strong><br/>#6B6588</div></div>
+    </div>
+
+    <h2>2. Typography</h2>
+    <div class="type-scale">
+      <div style="font-size:40px;font-weight:800">Heading 1 — 40px / 800</div>
+      <div style="font-size:24px;font-weight:700;margin-top:8px">Heading 2 — 24px / 700</div>
+      <div style="font-size:18px;margin-top:8px">Lead — 18px regular</div>
+      <div style="font-size:16px;margin-top:8px">Body — 16px regular</div>
+      <div style="font-size:13px;color:var(--muted);margin-top:8px">Caption — 13px muted</div>
+    </div>
+
+    <h2>3. Buttons</h2>
+    <p class="btn-row">
+      <button class="btn btn-primary">Improve prompt</button>
+      <button class="btn btn-secondary">Save to library</button>
+      <button class="btn btn-ghost">Copy</button>
+      <button class="btn btn-danger">Delete</button>
+    </p>
+    <h3>Sizes</h3>
+    <p class="btn-row">
+      <button class="btn btn-primary btn-sm">Small</button>
+      <button class="btn btn-primary">Medium</button>
+      <button class="btn btn-primary btn-lg">Large</button>
+    </p>
+    <h3>States</h3>
+    <p class="btn-row">
+      <button class="btn btn-primary" disabled>Disabled</button>
+      <button class="btn btn-primary btn-block">Full-width action</button>
+    </p>
+    <p style="color:var(--muted);font-size:14px">Hover darkens, active presses down 1px, focus shows a visible ring, disabled dims at 50%.</p>
+
+    <h2>4. Sample input</h2>
+    <div class="card">
+      <div class="field">
+        <label for="goal">What do you want to create?</label>
+        <input id="goal" type="text" value="Write a study timetable for final exams" />
+      </div>
+      <div class="field">
+        <label for="ctx">Context</label>
+        <textarea id="ctx" rows="3">I study biology and math, 2 hours per day.</textarea>
+      </div>
+      <button class="btn btn-primary">Improve prompt</button>
+      <h3>Improved prompt</h3>
+      <div class="result">Create a weekly study timetable for biology and math. I can study 2 hours per day. Format as a table with goals per session.</div>
+    </div>
+
+    <h2>5. Dark mode preview</h2>
+    <div class="dark-demo">
+      <h3 style="margin-top:0">From vague idea to vivid prompt</h3>
+      <p style="color:var(--muted)">Same components on dark surface: bg #14111F, surface #1E1930, text #F2EFFC.</p>
+      <p class="btn-row">
+        <button class="btn btn-primary">Improve prompt</button>
+        <button class="btn btn-secondary">Save to library</button>
+        <button class="btn btn-ghost">Copy</button>
+      </p>
+      <div class="field">
+        <label for="goal-dark">What do you want to create?</label>
+        <input id="goal-dark" type="text" value="Write a study timetable for final exams" />
+      </div>
+      <div class="result">Create a weekly study timetable for biology and math. I can study 2 hours per day. Format as a table with goals per session.</div>
+    </div>
+  </main>
+</body>
+</html>

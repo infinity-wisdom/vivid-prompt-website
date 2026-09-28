@@ -6,7 +6,7 @@ Vivid Prompt
 
 ## **Document Status**
 
-Draft — Product Definition
+Draft — Product Definition + Implementation Notes (§20)
 
 ## **1\. Product Overview**
 
@@ -755,4 +755,44 @@ The long-term product can evolve through four broad stages:
 **Stage 4 — AI Workspace:** Combine prompt learning, prompt creation, and AI execution in one environment.
 
 The central product promise should remain consistent throughout these stages: **help people communicate more effectively with AI and learn to do it themselves.**
+
+## **20\. Implementation Notes (living section)**
+
+Record of stack and build decisions made after the initial draft. Product requirements above are unchanged.
+
+### **20.1 Stack (decided)**
+
+| Area | Decision |
+| ----- | ----- |
+| Framework | Next.js (App Router, TypeScript) — `app/`, `lib/supabase/`, `middleware.ts` |
+| Database | PostgreSQL, run locally for now |
+| Auth | Supabase Authentication (`@supabase/ssr`, server + browser clients) |
+| File storage | Supabase Storage (`lesson-assets` public, `prompt-attachments` private) |
+| Schema | `supabase/migrations/0001_mvp_schema.sql`: `categories, templates, lessons, profiles, prompts, lesson_progress` + RLS (private-by-default, published content readable) |
+| Seed | `supabase/seed.sql`: 8 categories + 1 template + 1 lesson; `supabase/local_init.sql` stubs `auth.users`/`auth.uid()` for plain local Postgres |
+| Local run | `npx next dev` on `http://localhost:3000` with `.env.local` (copied from `.env.example`); all MVP pages return 200 with graceful DB fallback |
+
+### **20.2 Build order (decided)**
+
+Phase 0 Foundation → Phase 1 Discovery + Templates → Phase 2 Builder + Improvement + Usage → Phase 3 Auth + Library + Dashboard → Phase 4 Learning Content → Phase 5 Coach → Phase 6 Admin → Phase 7 Hardening. Rule-based improvement/coach ships first; LLM API added behind it as an upgrade with fallback.
+
+### **20.3 AI model API (decided)**
+
+* Approach: provider abstraction in `lib/ai/` (single `improvePrompt`/`coachReply` interface returning `{ prompt, notes }`), server-side keys only, per-guest rate limits + response caching. Deterministic rule-based assembler remains as fallback when the API is down or quota is hit.
+* Primary pick: cheap fast instruction-following mini-class model (e.g. OpenAI GPT-4o-mini class). Rationale in §20.4.
+* Alternatives: Anthropic Haiku class (better coaching tone/safety) or Google Flash class (generous free tier for student scale). Switch via the abstraction without touching pages.
+* Pricing/limits change fast — verify current per-1M-token input/output prices and free-tier quotas before committing.
+
+### **20.4 Why a mini-class model fits this PRD**
+
+* Task shape (§9.4–9.6): short rewrites + bullet explanations + 1–2 follow-up questions. Needs strong instruction-following and structured output, not deep reasoning — flagship models cost ~5–20× more for marginal gain here.
+* Users (§5): students/beginners + guest access → high volume, low budget. Mini-class keeps per-improvement cost near-zero and latency low for the interactive coach loop.
+* Safety/tone (§6 Beginner First, §9.5 plain language): mini models follow simple-language system prompts well; keep a small moderation/deny-list layer for public sharing (§9.9) regardless of provider.
+* Growth path: same interface later serves prompt scoring (§9.6 future), AI recommendations (§9.1 future), and in-platform execution (§9.7 future) — upgrade model tier per feature, not per page.
+
+### **20.5 Design previews (requested)**
+
+* `design.html` (repo root, preview-only, not the app): MVP visual baseline — colors (primary `#6C4CF1`, dark `#5538D1`, accent `#22C3A6`, bg `#FAF9FF`, text `#1A1633`, muted `#6B6588`), type scale (40/24/18/16/13px), sample input + improved-prompt card.
+* Button system added on request: variants primary/secondary/ghost/danger; sizes sm/md/lg; states hover/active (1px press)/focus-ring/disabled-50%/block. Dark-mode preview block added on request (bg `#14111F`, surface `#1E1930`, text `#F2EFFC`).
+* `index.html` (repo root, preview-only): static homepage mock — hero, core-loop steps, template cards, coach example, footer. Mirrors the Next.js `app/page.tsx` flow without backend.
 

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Vivid Prompt — Homepage Preview</title>
+<style>
+  :root { --primary:#6C4CF1; --primary-dark:#5538D1; --accent:#22C3A6; --bg:#FAF9FF; --surface:#fff; --text:#1A1633; --muted:#6B6588; --border:#E6E1F5; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:Inter,system-ui,sans-serif; background:var(--bg); color:var(--text); }
+  header { background:var(--surface); border-bottom:1px solid var(--border); padding:12px 24px; display:flex; gap:18px; align-items:center; }
+  .logo { font-weight:800; color:var(--primary); font-size:20px; }
+  nav a { color:var(--text); text-decoration:none; font-size:15px; }
+  main { max-width:960px; margin:0 auto; padding:40px 20px 64px; }
+  .hero { text-align:center; padding:32px 0; }
+  .hero h1 { font-size:44px; margin:0; letter-spacing:-1px; }
+  .hero p { color:var(--muted); font-size:19px; }
+  .btn { display:inline-block; border:none; cursor:pointer; padding:14px 28px; border-radius:10px; font-size:17px; font-weight:700; background:var(--primary); color:#fff; text-decoration:none; }
+  .btn:hover { background:var(--primary-dark); }
+  .steps { display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:10px; margin:28px 0; }
+  .step { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:14px; text-align:center; font-size:14px; }
+  .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; }
+  .card { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:18px; }
+  .coach { background:#F4F1FF; border-left:4px solid var(--primary); border-radius:0 10px 10px 0; padding:14px; margin-top:16px; }
+  footer { text-align:center; color:var(--muted); font-size:13px; padding:24px; }
+</style>
+</head>
+<body>
+  <header><span class="logo">Vivid Prompt</span><nav><a href="#">Explore</a> &nbsp; <a href="#">Builder</a> &nbsp; <a href="#">Coach</a> &nbsp; <a href="#">Learn</a></nav></header>
+  <main>
+    <div class="hero">
+      <h1>From vague idea to vivid prompt</h1>
+      <p>Discover → Build → Improve → Understand → Copy → Save. A friendly coach for students and beginners.</p>
+      <a class="btn" href="#">Start building — it's free</a>
+    </div>
+    <div class="steps">
+      <div class="step">1. Discover</div><div class="step">2. Build</div><div class="step">3. Improve</div>
+      <div class="step">4. Understand</div><div class="step">5. Copy</div><div class="step">6. Save</div>
+    </div>
+    <h2>Popular templates</h2>
+    <div class="cards">
+      <div class="card"><strong>Study timetable</strong><p>Weekly plan that fits your subjects and time.</p></div>
+      <div class="card"><strong>Essay planner</strong><p>Outline, thesis and structure in minutes.</p></div>
+      <div class="card"><strong>Debug helper</strong><p>Explain errors and suggest fixes.</p></div>
+    </div>
+    <h2>Coach example</h2>
+    <div class="coach"><strong>You:</strong> Write something about business.<br/><strong>Coach:</strong> What kind of business content do you need, and who is it for?</div>
+  </main>
+  <footer>Vivid Prompt — static homepage preview (see design.html for the design system).</footer>
+</body>
+</html>

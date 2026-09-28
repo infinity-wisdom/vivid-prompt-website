@@ -1,0 +1,40 @@
+{
+  "name": "vivid_prompt_website",
+  "version": "1.0.0",
+  "description": "A beginner-friendly prompt learning platform that helps students and beginners go from vague ideas to clear, useful AI prompts.",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "db:types": "npx supabase gen types typescript --local > lib/database.types.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/infinity-wisdom/vivid-prompt-website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/infinity-wisdom/vivid-prompt-website/issues"
+  },
+  "homepage": "https://github.com/infinity-wisdom/vivid-prompt-website#readme",
+  "dependencies": {
+    "@supabase/ssr": "^0.12.7",
+    "@supabase/supabase-js": "^2.117.2",
+    "next": "^16.3.6",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.3",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.3.6",
+    "typescript": "^6.0.3"
+  }
+}
